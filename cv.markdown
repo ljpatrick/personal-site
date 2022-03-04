@@ -4,17 +4,17 @@ title: Resume
 permalink: /cv/
 ---
 
-## Education
+# Education
 Successfully completed VCE year 12 education at Sale College, graduated 2021.
 Currently enrolled in full time study at the Swinburne Institute of Technology; undertaking a double-major Bachelor of Arts.
 
-## Work Experience
+# Work Experience
 2020 to 2021
 Dish washer – Avon Hotel
 2018 to 2020
 Sole proprietor – InDepth Computer Maintenance
 
-## Skills
+# Skills
 Cleaning
 Computer repair
 Programming
@@ -31,23 +31,23 @@ Writing
 2018	Year 9 Honors Award
 2016	Duke of Edinburgh Silver Physics Award
 
-## Interests
+# Interests
 Computers
 Graphic design
 Hiking
 Reading
 World history
 
-## Contact
+# Contact
 ljpatrick@protonmail.com
 
-## Availability
+# Availability
 Monday-Tuesday:	5pm – 9pm
 Thursday-Friday: 	2pm – 9pm
 Saturday-Sunday:	6am – 9pm
 Looking for casual employment.
 
-## References
+# References
 Stuart Webster
 CEO
 InDepth 3D Printing
