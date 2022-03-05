@@ -1,0 +1,6 @@
+baseURL = "https://ljpatrick.link/"
+languageCode = "en-us"
+title = "ljpatrick"
+theme = "starter"
+[permalinks]
+  posts = '/:year/:month/:title/'
