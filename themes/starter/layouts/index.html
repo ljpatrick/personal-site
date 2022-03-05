@@ -33,15 +33,15 @@
 
 		{{ if ge $section_count (add $n_posts 1) }}
 		<section>
-			<h1>More</h1>
+			<h4>More</h4>
 			{{/* Now, range through the next four after the initial $n_posts items. Nest the requirements, "after" then "first"
 			on the outside */}}
 			{{ range (first 4 (after $n_posts $section)) }}
-			<h2>
+			<p>
 				<a href="{{ .Permalink }}">
 					{{ .Title }}
 				</a>
-			</h2>
+			</p>
 			{{ end }}
 
 			{{/* As above, Use $section_name to get the section title, and URL. Use "with" to only show it if it exists */}}

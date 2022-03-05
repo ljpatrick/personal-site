@@ -1,14 +1,18 @@
 <nav role="navigation">
-	<a href="{{ .Site.BaseURL }}" title="Home page" class="home-buttom">
-		Home {{/* .Site.Title */}}
-	</a>
-	{{ partial "i18nlist.html" . }}
-	{{ if .Site.Menus.main }}
-	{{ range .Site.Menus.main }}
-	<a href="{{ .URL }}" title="{{ .Name }} page">
-		{{ .Name }}
-	</a>
-	{{ end }}
-	{{ end }}
-	{{ partial "social-follow.html" . }}
+	<!--{{ partial "i18nlist.html" . }}>-->
+	<ul class="navigation">
+		{{ $currentPage := . }}
+		{{ range .Site.Menus.main }}
+						<li{{ if or ($currentPage.IsMenuCurrent "main" .) (and (eq $currentPage.Section .Page.Section) (eq $currentPage.Section "posts")) }} class="active"{{ end }}>
+								<a href="{{ .URL }}">
+										{{ .Pre }}
+										<span>{{ .Name }}</span>
+								</a>
+						</li>
+		{{ end }}
+</ul>
+	<!--{{ partial "social-follow.html" . }}-->
+<script type="text/javascript">
+	document.querySelector('.active').scrollIntoView(false);
+</script>
 </nav>

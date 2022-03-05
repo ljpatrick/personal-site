@@ -1,5 +1,6 @@
 @import "normalize";
 $banner: "article, footer, nav, .header";
+$solid: "article, footer";
 
 body {
   background-color: #eee;
@@ -7,12 +8,34 @@ body {
 
 #{$banner} {
   width: 50%;
-  background-color: #fff;
   padding: 20px 10vw;
   margin: 0 auto;
 }
+#{$solid} {
+  background-color: #fff;
+}
 nav {
   padding: 0;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: #eee;
+}
+nav ul {
+  margin: 0;
+  height: 3em;
+  padding: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+nav li {
+  display: inline-block;
+  padding: 0 40px;
+  line-height: 3em;
+}
+nav li.active {
+  background-color: #fff;
 }
 footer {
   margin-bottom: 100px;
