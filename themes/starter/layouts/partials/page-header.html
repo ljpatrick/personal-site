@@ -1,5 +1,9 @@
-<header>
-	<div>
-		{{ partial "site-navigation.html" . }}
-	</div>
+<header class="header">
+	<h1>
+		{{ .Site.Title }}
+	</h1>
+	<p>
+		{{ humanize .Section | upper }}
+	</p>
 </header>
+{{ partial "site-navigation.html" . }}

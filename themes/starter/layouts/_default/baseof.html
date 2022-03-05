@@ -36,6 +36,9 @@
 	{{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production") }}
 	{{ template "_internal/google_analytics_async.html" . }}
 	{{ end }}
+
+	{{/* Extra assets */}}
+	<link href="//cdnjs.cloudflare.com/ajax/libs/cc-icons/1.2.1/css/cc-icons.min.css" rel="stylesheet" />
 </head>
 
 <body>

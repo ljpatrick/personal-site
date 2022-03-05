@@ -1,1 +1,31 @@
 @import "normalize";
+$banner: "article, footer, nav, .header";
+
+body {
+  background-color: #eee;
+}
+
+#{$banner} {
+  width: 50%;
+  background-color: #fff;
+  padding: 20px 10vw;
+  margin: 0 auto;
+}
+nav {
+  padding: 0;
+}
+footer {
+  margin-bottom: 100px;
+}
+h1 {
+  font-size: 48px;
+}
+.waiver {
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  #{$banner} {
+    width: 100%;
+  }
+}

@@ -1,6 +1,5 @@
 <header>
-	<div>
-		{{ partial "site-navigation.html" . }}
+	<div class="header">
 		<div>
 			<h1>
 				{{ .Title | default .Site.Title }}
@@ -12,4 +11,5 @@
 			{{ end }}
 		</div>
 	</div>
+	{{ partial "site-navigation.html" . }}
 </header>
