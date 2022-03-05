@@ -1,0 +1,32 @@
+---
+layout: default
+---
+<style media="screen">
+  .content {
+    width: 68%;
+    float: left;
+    margin: 0 1%;
+  }
+  .info {
+    width: 28%;
+    float: right;
+    margin: 10px 1%;
+    background-color: #eee;
+  }
+  @media screen and (max-width: 768px) {
+    .info, .content {
+      float: none;
+      width: 100%;
+      margin: 0;
+    }
+  }
+</style>
+
+
+<div class="content">
+  {{ content }}
+</div>
+
+<div class="info">
+  {{ page.info }}
+</div>
