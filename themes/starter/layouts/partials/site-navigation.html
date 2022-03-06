@@ -1,18 +1,24 @@
 <nav role="navigation">
 	<!--{{ partial "i18nlist.html" . }}>-->
 	<ul class="navigation">
-		{{ $currentPage := . }}
-		{{ range .Site.Menus.main }}
-						<li{{ if or ($currentPage.IsMenuCurrent "main" .) (and (eq $currentPage.Section .Page.Section) (eq $currentPage.Section "posts")) }} class="active"{{ end }}>
-								<a href="{{ .URL }}">
-										{{ .Pre }}
-										<span>{{ .Name }}</span>
-								</a>
-						</li>
-		{{ end }}
-</ul>
+		{{ $currentPage := . }}{{ range .Site.Menus.main }}<li
+		{{if or ($currentPage.IsMenuCurrent "main" .) (and (eq $currentPage.Section .Page.Section) (eq $currentPage.Section "posts")) (and (eq .Page.Section "posts") (or (eq $currentPage.Section "archm") (eq $currentPage.Section "archy")))}} class="active"{{ end }}><a href="{{ .URL }}">{{ .Pre }} <span>{{ .Name }}</span></a></li>{{ end }}
+	</ul>
 	<!--{{ partial "social-follow.html" . }}-->
-<script type="text/javascript">
-	document.querySelector('.active').scrollIntoView(false);
-</script>
 </nav>
+<div class="topbar"><span class="hamburger" onclick="dropdown();">{{ partial "dynamic-svgs/menu-line.svg" }}{{ partial "dynamic-svgs/close-line.svg" }}</span></div>
+<script type="text/javascript">
+	function dropdown() {
+		let nav = document.querySelector('.navigation');
+		if (nav.classList.contains("open")) {
+			nav.classList.remove("open");
+			document.querySelector('.menu-line').style.display = "inline-block";
+			document.querySelector('.close-line').style.display = "none";
+		} else {
+			nav.classList.add("open");
+			document.querySelector('.menu-line').style.display = "none";
+			document.querySelector('.close-line').style.display = "inline-block";
+		}
+	}
+	if (screen.width > 768) {document.querySelector('.active').scrollIntoView(false);}
+</script>

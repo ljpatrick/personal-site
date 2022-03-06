@@ -1,25 +1,79 @@
 @import "normalize";
-$banner: "article, footer, nav, .header";
-$solid: "article, footer";
+$banner: "article, footer, nav, .header, .breadcrumb";
 
-body {
-  background-color: #eee;
-}
+/******************************************************************************/
+$el-b0: "body, nav ul, .waiver, .hamburger";
+$el-b1: "article, footer, .active, .topbar, .breadcrumb";
+
+$el-f0: $el-b0, $el-b1;
+
+$el-a0: "a";
+$el-a1: "a:visited";
+/******************************************************************************/
+$col-b0: #101;
+$col-b1: #212;
+
+$col-f0: #cbc;
+
+$col-a0: #c8c;
+$col-a1: #959;
+/******************************************************************************/
 
 #{$banner} {
   width: 50%;
   padding: 20px 10vw;
   margin: 0 auto;
 }
-#{$solid} {
-  background-color: #fff;
+#{$el-b0} {
+  background-color: $col-b0;
 }
+#{$el-b1} {
+  background-color: $col-b1;
+}
+#{$el-f0} {
+  color: $col-f0;
+  border-color: $col-f0;
+}
+.color-svg {
+  fill: $col-f0;
+}
+#{$el-a0} {
+  color: $col-a0;
+  border-color: $col-a0;
+}
+#{$el-a1} {
+  color: $col-a1;
+  border-color: $col-a1;
+}
+a {
+  text-decoration: none;
+}
+a:hover, a:active, a:focus {
+  text-decoration: underline;
+  color: $col-f0 !important;
+}
+
+nav li a, nav li a:visited {
+  color: inherit;
+}
+nav li a:hover,
+nav li a:active,
+nav li a:focus {
+  text-decoration: none;
+}
+nav li {
+  display: inline-block;
+  color: $col-a1;
+}
+nav li.active {
+  color: $col-a0;
+}
+
 nav {
   padding: 0;
   position: sticky;
   top: 0;
   left: 0;
-  background-color: #eee;
 }
 nav ul {
   margin: 0;
@@ -29,26 +83,140 @@ nav ul {
   overflow-y: hidden;
   white-space: nowrap;
 }
-nav li {
+nav li a {
   display: inline-block;
   padding: 0 40px;
   line-height: 3em;
 }
-nav li.active {
-  background-color: #fff;
-}
+
 footer {
   margin-bottom: 100px;
+  border-radius: 0 0 20px 20px;
 }
 h1 {
   font-size: 48px;
 }
-.waiver {
-  text-align: center;
+hr {
+  margin: 10px -5vw;
+  border: none;
+  border-bottom: 1px solid;
 }
 
+.empty {
+  height: 1em;
+}
+
+.breadcrumb {
+  padding-bottom: 0;
+}
+
+.topbar {
+  display: none;
+  position: fixed;
+  top: 0em;
+  left: 0em;
+  width: 100vw;
+  height: 3em;
+}
+.hamburger {
+  margin: 0.5em;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  border-radius: 5px;
+  display: inline-block;
+}
+.menu-line, .close-line {
+  display: inline-block;
+  margin-top: 0.25em;
+  width: 1.5em;
+  height: 1.5em;
+}
+.close-line {
+  display: none;
+}
+.waiver {
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 20px;
+}
+.right {
+  float: right;
+}
+
+.post-date {
+  float: right;
+}
+
+.squish {
+  margin-bottom: 0;
+}
+
+ul.treelist {
+  padding-left: 20px;
+  margin-left: 20px;
+  margin-top: .75em;
+  list-style-type: none;
+}
+ul.treelist > div.twig {
+  position: relative;
+  float: left;
+  margin-left: -20px;
+  height: 1.5em;
+  top: -.75em;
+  width: 18px;
+  border-left: 1px solid;
+  border-bottom: 1px solid;
+}
+ul.treelist > li {
+  line-height: 1.5em;
+}
+
+// For infopane pages (might make a template later)
+.info {
+  background-color: $col-b0;
+}
+
+@media screen and (max-width: 1024px) {
+  #{$banner} {
+    width: 80%;
+  }
+}
 @media screen and (max-width: 768px) {
   #{$banner} {
     width: 100%;
+  }
+  body {
+    padding-top: 3em;
+  }
+  footer {
+    border-radius: 0;
+  }
+  .topbar {
+    display: block;
+  }
+  nav li {
+    display: block;
+  }
+  nav {
+    padding-top: 3em;
+    position: fixed;
+  }
+  nav ul {
+    height: auto;
+    max-height: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    box-shadow: 0px 0px 10px $col-b0;
+    transition: max-height .5s;
+  }
+  .open {
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+  nav li a {
+    line-height: 3em;
+    width: 100%
   }
 }

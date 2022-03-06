@@ -2,7 +2,8 @@
 	<div class="header">
 		<div>
 			<h1>
-				{{ .Title | default .Site.Title }}
+				{{/* .Title |*/}}
+				{{ default .Site.Title }}
 			</h1>
 			{{ with .Params.description }}
 			<h2>

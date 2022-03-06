@@ -1,11 +1,12 @@
 {{ define "main" }}
+<div class="breadcrumb empty"></div>
 <article>
 	{{ .Content }}
 	{{/* Define a section to pull recent posts from. For Hugo 0.20 this will default to the section with the most number of
 	pages. */}}
 	{{ $mainSections := .Site.Params.mainSections | default (slice "post") }}
 	{{/* Create a variable with that section to use in multiple places. */}}
-	{{ $section := where .Site.RegularPages "Section" "in" $mainSections }}
+	{{ $section := where (where .Site.RegularPages "Section" "in" $mainSections) "Params.hidden" "!=" true }}
 	{{/* Check to see if the section is defined for ranging through it */}}
 	{{ $section_count := len $section }}
 	{{ if ge $section_count 1 }}
@@ -25,15 +26,13 @@
 		<section>
 			{{/* Range through the first $n_posts items of the section */}}
 			{{ range (first $n_posts $section) }}
-			<div>
-				{{ partial "summary.html" . }}
-			</div>
+			{{ partial "post/archive" . }}
 			{{ end }}
 		</section>
 
 		{{ if ge $section_count (add $n_posts 1) }}
 		<section>
-			<h4>More</h4>
+			<!--<h4>More</h4>
 			{{/* Now, range through the next four after the initial $n_posts items. Nest the requirements, "after" then "first"
 			on the outside */}}
 			{{ range (first 4 (after $n_posts $section)) }}
@@ -42,11 +41,11 @@
 					{{ .Title }}
 				</a>
 			</p>
-			{{ end }}
+			{{ end }}-->
 
 			{{/* As above, Use $section_name to get the section title, and URL. Use "with" to only show it if it exists */}}
 			{{ with .Site.GetPage "section" $section_name }}
-			<a href="{{ .Permalink }}">All {{.Title }}</a>
+			<p><a href="/{{ .Title | lower }}/{{ (index $section 0).Date.Format "2006/01" }}">{{ (index $section 0).Date.Format "January" }}</a><a class="right" href="/{{ .Title | lower }}">All {{.Title }}</a></p>
 			{{ end }}
 		</section>
 		{{ end }}
