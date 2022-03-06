@@ -1,0 +1,33 @@
+{{ define "header" }}
+{{/* We can override any block in the baseof file be defining it in the template */}}
+{{ partial "page-header.html" . }}
+{{ end }}
+
+{{ define "main" }}
+{{ $section := .Site.GetPage "section" .Section }}
+<article>
+
+	<header>
+		<h2 class="squish">
+			{{- .Title -}}
+		</h2>
+		{{/* Hugo uses Go's date formatting is set by example. Here are two formats */}}
+		<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+			{{- .Date.Format "02/01/2006 15:04" -}}
+		</time>
+	</header>
+
+	<section>
+		{{- .Content -}}
+		{{- partial "tags.html" . -}}
+		<div>
+			{{ template "_internal/disqus.html" . }}
+		</div>
+	</section>
+
+	<aside>
+		{{- partial "menu-contextual.html" . -}}
+	</aside>
+
+</article>
+{{ end }}

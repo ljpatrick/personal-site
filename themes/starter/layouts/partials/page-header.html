@@ -1,0 +1,16 @@
+<header class="header">
+	<h1>
+		{{ .Site.Title }}
+	</h1>
+</header>
+{{ partial "site-navigation.html" . }}
+{{ if not (eq .Section "") }}
+<div class="breadcrumb">
+	<a href="/{{ .Section }}/">{{ humanize .Section | title }}</a>
+	{{ if eq .Section "posts" }}
+		&gt; <a href="/{{ .Section }}/{{ .Page.Date.Format "2006" }}/">{{ .Page.Date.Format "2006" }}</a>	&gt; <a href="/{{ .Section }}/{{ .Page.Date.Format "2006/01" }}/">{{ .Page.Date.Format "January" }}</a>
+	{{ end }}
+</div>
+{{ else }}
+<div class="breadcrumb empty"></div>
+{{ end }}

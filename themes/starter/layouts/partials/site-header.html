@@ -1,0 +1,16 @@
+<header>
+	<div class="header">
+		<div>
+			<h1>
+				{{/* .Title |*/}}
+				{{ default .Site.Title }}
+			</h1>
+			{{ with .Params.description }}
+			<h2>
+				{{ . }}
+			</h2>
+			{{ end }}
+		</div>
+	</div>
+	{{ partial "site-navigation.html" . }}
+</header>
