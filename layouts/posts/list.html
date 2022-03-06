@@ -1,0 +1,20 @@
+{{ define "main" }}
+<div class="breadcrumb">
+	<a href="/posts/">Posts</a>
+</div>
+<article>
+  <h2>Archive</h2>
+  {{ range where .Site.Pages "Section" "archy" }}
+  {{ $year := .Date.Format "2006" }}
+  <h3 class="squish"><a href="{{ .Permalink }}">{{ $year }}</a></h3>
+  <ul class="treelist">
+    {{ range where .Site.Pages "Section" "archm" }}
+      {{ if eq (.Date.Format "2006") $year }}
+        <div class="twig"></div>
+        <li><a href="{{ .Permalink }}">{{ .Date.Format "January" }}</a></li>
+      {{ end }}
+    {{ end }}
+  </ul>
+  {{ end }}
+</article>
+{{ end }}

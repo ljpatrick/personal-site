@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="breadcrumb">
+	<a href="/posts/">Posts</a>
+	&gt; <a href="/posts/{{ .Page.Date.Format "2006" }}/">{{ .Page.Date.Format "2006" }}</a>
+  &gt; <a href="/posts/{{ .Page.Date.Format "2006/01" }}/">{{ .Page.Date.Format "January" }}</a>
+</div>
+<article>
+  {{ $archYear := .Date.Format "2006" }}
+  {{ $archMonth := .Date.Format "January" }}
+
+  <h2>Archive for {{ $archMonth }} {{ $archYear }}</h2>
+
+  {{ range where .Site.Pages "Section" "posts" }}
+  {{ if and (eq (.Date.Format "2006") $archYear) (eq (.Date.Format "January") $archMonth) }}
+  {{ partial "post/archive" . }}
+  {{ end }}
+  {{ end }}
+</article>
+{{ end }}

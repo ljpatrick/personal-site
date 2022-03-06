@@ -2,6 +2,7 @@
 title: "About"
 draft: false
 menu: "main"
+weight: 1
 ---
 
 Hi, I'm Liam!

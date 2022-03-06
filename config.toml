@@ -2,5 +2,12 @@ baseURL = "https://ljpatrick.link/"
 languageCode = "en-us"
 title = "ljpatrick"
 theme = "starter"
+
+# prevent hugo from creating folders/indexes for each section
+disableKinds = ["section"]
+
 [permalinks]
-  posts = '/:year/:month/:title/'
+    # :title is used if :slug is not defined in post frontmatter
+    posts = "/posts/:year/:month/:slug/"
+    archm = "/posts/:year/:month/"
+    archy = "/posts/:year/"
