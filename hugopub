@@ -10,7 +10,7 @@ fi
 ###############################################################################
 
 function help {
-  echo "???: hugobuild push|no-push [<message> [<out_dir>]]"
+  echo "???: hugobuild push|no-push $2[<message> [<out_dir>]]"
   echo "     hugobuild help"
 }
 
@@ -43,14 +43,14 @@ function build {
 
 function push {
   build
-  commit "$2"
+  commit "$1"
   git push
   exit 0
 }
 
 function no-push {
   build
-  commit "$2"
+  commit "$1"
   echo "INF: Committed without pushing."
   exit 0
 }
@@ -61,18 +61,18 @@ if [ -z "$1" ]; then
   read -p "---- Push? [y/N]" -n 1 -r
   echo
   if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-    no-push
+    no-push "$2"
   else
-    push
+    push "$2"
   fi
 elif [ "$1" = "help" ]; then
   echo "INF: Help:"
   help
   exit 0
 elif [ "$1" = "push" ]; then
-  push
+  push "$2"
 elif [ "$1" = "no-push" ]; then
-  no-push
+  no-push "$2"
 else
   echo "ERR: Unrecognised argument."
   help
