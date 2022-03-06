@@ -1,0 +1,83 @@
+#!/bin/bash
+###############################################################################
+# Configuration:
+out_dir="./public"
+###############################################################################
+# Overrides:
+if [ ! -z "$3" ]; then
+  out_dir="$3"
+fi
+###############################################################################
+
+function help {
+  echo "???: hugobuild push|no-push [<message> [<out_dir>]]"
+  echo "     hugobuild help"
+}
+
+function commit {
+  git add -A .
+  if [ -z "$1" ]; then
+    git commit
+  else
+    git commit -m "$1"
+  fi
+}
+
+function build {
+  echo $out_dir
+  if [ ! -d "./push" ]; then
+    echo "ERR: Remember to have your repo in the directory \"push\"."
+    exit 1
+  fi
+  rm -r ./push/*
+  scripts/*
+  hugo -D
+  if [ ! -d $out_dir ]; then
+    echo "ERR: Directory \"$out_dir\" does not exist."
+    echo "     Are you outputting to the same directory you set out_dir to?"
+    exit 1
+  fi
+  cp -r $out_dir/* ./push
+  cd push
+}
+
+function push {
+  build
+  commit "$2"
+  git push
+  exit 0
+}
+
+function no-push {
+  build
+  commit "$2"
+  echo "INF: Committed without pushing."
+  exit 0
+}
+
+###############################################################################
+
+if [ -z "$1" ]; then
+  read -p "---- Push? [y/N]" -n 1 -r
+  echo
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    no-push
+  else
+    push
+  fi
+elif [ "$1" = "help" ]; then
+  echo "INF: Help:"
+  help
+  exit 0
+elif [ "$1" = "push" ]; then
+  push
+elif [ "$1" = "no-push" ]; then
+  no-push
+else
+  echo "ERR: Unrecognised argument."
+  help
+  exit 1
+fi
+echo "ERR: You shouldn't be here! Something's gone wrong!"
+help
+exit 1
