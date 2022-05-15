@@ -10,8 +10,8 @@ fi
 ###############################################################################
 
 function help {
-  echo "???: hugobuild push|no-push $2[<message> [<out_dir>]]"
-  echo "     hugobuild help"
+  echo "???: hugopub push|no-push $2[<message> [<out_dir>]]"
+  echo "     hugopub help"
 }
 
 function commit {
